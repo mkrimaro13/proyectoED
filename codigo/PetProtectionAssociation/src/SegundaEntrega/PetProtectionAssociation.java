@@ -71,7 +71,7 @@ public class PetProtectionAssociation {
                             highsetPriceVaccine = actualVaccine;
                         }
                     }
-                    JOptionPane.showMessageDialog(null,"La vacuna de mayor precio por unidad es: " + highsetPriceVaccine);
+                    JOptionPane.showMessageDialog(null,"La vacuna de mayor precio por unidad es: \n" + highsetPriceVaccine);
             }
         } while (mainOp < 3);
 
