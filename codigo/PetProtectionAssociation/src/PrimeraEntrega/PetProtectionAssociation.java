@@ -41,7 +41,7 @@ public class PetProtectionAssociation {
     }
 
     public void vaccinate(Pet pet, Vaccine vaccine) {
-        pet.printPetInformation();
+        System.out.println(pet.toString());
         System.out.println("Se aplicará la vacuna: " + vaccine.getName());
 
         if (pet.getAppliedVaccine() == null) {
@@ -72,22 +72,23 @@ public class PetProtectionAssociation {
             System.out.println("Lo sentimos ya se le ha aplicado una vacuna durante la jornada");
         }
     }
+
     public static void main(String[] args) {
         Vaccine parvovirus = new Vaccine(1, "Parvovirus", 20.0, 11);
         Vaccine trivalente = new Vaccine(2, "Trivalente", 12.0, 5);
         Vaccine rabia = new Vaccine(3, "Rabia", 30.0, 8);
         Vaccine hepatitis = new Vaccine(3, "Hepatitis", 18.0, 10);
 
-        Pet pet1 = new Pet(101, "Firulais", 3, "12345670");
-        Pet pet2 = new Pet(102, "Pepe", 7, "12345671");
-        Pet pet3 = new Pet(103, "Elver", 1, "12345672");
-        Pet pet4 = new Pet(104, "Gomez", 8, "12345673");
-        Pet pet5 = new Pet(105, "Torba", 5, "12345674");
-        Pet pet6 = new Pet(106, "Tortilla", 2, "12345670");
-        Pet pet7 = new Pet(107, "Caramelo", 5, "12345671");
-        Pet pet8 = new Pet(108, "Algodon", 6, "12345672");
-        Pet pet9 = new Pet(109, "Crispeta", 0, "12345673");
-        Pet pet10 = new Pet(110, "Chorizo", 4, "12345674");
+        Pet pet1 = new Pet(101, "Firulais", 3, 12345670);
+        Pet pet2 = new Pet(102, "Pepe", 7, 12345671);
+        Pet pet3 = new Pet(103, "Elver", 1, 12345672);
+        Pet pet4 = new Pet(104, "Gomez", 8, 12345673);
+        Pet pet5 = new Pet(105, "Torba", 5, 12345674);
+        Pet pet6 = new Pet(106, "Tortilla", 2, 12345670);
+        Pet pet7 = new Pet(107, "Caramelo", 5, 12345671);
+        Pet pet8 = new Pet(108, "Algodon", 6, 12345672);
+        Pet pet9 = new Pet(109, "Crispeta", 0, 12345673);
+        Pet pet10 = new Pet(110, "Chorizo", 4, 12345674);
 
         PetProtectionAssociation PPA = new PetProtectionAssociation();
 
@@ -107,16 +108,16 @@ public class PetProtectionAssociation {
         System.out.println("----------------------------------------------");
 
         System.out.println("INFORMACIÓN FINAL DE LAS MASCOTAS: ");
-        pet1.printPetInformation();
-        pet2.printPetInformation();
-        pet3.printPetInformation();
-        pet4.printPetInformation();
-        pet5.printPetInformation();
-        pet6.printPetInformation();
-        pet7.printPetInformation();
-        pet8.printPetInformation();
-        pet9.printPetInformation();
-        pet10.printPetInformation();
+        System.out.println(pet1.toString());
+        System.out.println(pet2.toString());
+        System.out.println(pet3.toString());
+        System.out.println(pet4.toString());
+        System.out.println(pet5.toString());
+        System.out.println(pet6.toString());
+        System.out.println(pet7.toString());
+        System.out.println(pet8.toString());
+        System.out.println(pet9.toString());
+        System.out.println(pet10.toString());
 
         System.out.println("----------------------------------------------");
 

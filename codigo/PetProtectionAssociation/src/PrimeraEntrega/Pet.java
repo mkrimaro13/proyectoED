@@ -1,5 +1,7 @@
 package PrimeraEntrega;
 
+import SegundaEntrega.Validations;
+
 /**
  *
  * @author marco
@@ -9,10 +11,10 @@ public class Pet {
     private Integer code;
     private String name;
     private Integer age;
-    private String ownerId;
+    private Integer ownerId;
     private Vaccine appliedVaccine;
 
-    public Pet(int code, String name, int age, String ownerId, Vaccine appliedVaccine) {
+    public Pet(int code, String name, int age, Integer ownerId, Vaccine appliedVaccine) {
         this.code = code;
         this.name = name;
         this.age = age;
@@ -20,11 +22,14 @@ public class Pet {
         this.appliedVaccine = appliedVaccine;
     }
 
-    public Pet(int code, String name, int age, String ownerId) {
+    public Pet(int code, String name, int age, Integer ownerId) {
         this.code = code;
         this.name = name;
         this.age = age;
         this.ownerId = ownerId;
+    }
+
+    public Pet() {
     }
 
     public Integer getCode() {
@@ -51,11 +56,11 @@ public class Pet {
         this.age = age;
     }
 
-    public String getOwnerId() {
+    public Integer getOwnerId() {
         return ownerId;
     }
 
-    public void setOwnerId(String ownerId) {
+    public void setOwnerId(Integer ownerId) {
         this.ownerId = ownerId;
     }
 
@@ -67,17 +72,34 @@ public class Pet {
         this.appliedVaccine = appliedVaccine;
     }
 
-    public void printPetInformation() {
-        System.out.println("Código de la mascota: " + code);
-        System.out.println("Nombre de la mascota: " + name);
-        System.out.println("Edad de la mascota: " + age);
-        System.out.println("Identificación del propietario de la mascota: " + ownerId);
-        if (appliedVaccine != null) {
-            System.out.println("Vacuna aplicada a la mascota:");
-            System.out.println("- Código de la vacuna: " + appliedVaccine.getCode());
-            System.out.println("- Nombre de la vacuna: " + appliedVaccine.getName());
-            System.out.println("");
-
+    @Override
+    public String toString() {
+        if (appliedVaccine == null) {
+            return "Código de la mascota: " + code + "\n" +
+                    "Nombre de la mascota: " + name + "\n" +
+                    "Edad de la mascota: " + age + "\n" +
+                    "Identificación del propietario de la mascota: " + ownerId;
+        } else {
+            return "Código de la mascota: " + code + "\n" +
+                    "Nombre de la mascota: " + name + "\n" +
+                    "Edad de la mascota: " + age + "\n" +
+                    "Identificación del propietario de la mascota: " + ownerId + "\n" +
+                    "Vacuna aplicada a la mascota:" + "\n" +
+                    "- Código de la vacuna: " + appliedVaccine.getCode() + "\n" +
+                    "- Nombre de la vacuna: " + appliedVaccine.getName() + "\n";
         }
+    }
+
+    // Para la segunda entrega, registro de mascotas
+    public Pet petRegistry() {
+        String name;
+        Integer code, age, ownerId;
+        Pet pet;
+        code = Validations.readInteger("Ingresa el código de la mascota: ");
+        name = Validations.readString("Ingresa el nombre de la mascota: ");
+        age = Validations.readInteger("Ingresa la edad: ");
+        ownerId = Validations.readInteger("Ingresa el número de documento del dueño de la mascota: ");
+        pet = new Pet(code, name, age, ownerId);
+        return pet;
     }
 }
