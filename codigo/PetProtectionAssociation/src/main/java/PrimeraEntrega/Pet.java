@@ -14,6 +14,9 @@ public class Pet {
     private Integer ownerId;
     private Vaccine appliedVaccine;
 
+    public Pet() {
+    }
+
     public Pet(int code, String name, int age, Integer ownerId, Vaccine appliedVaccine) {
         this.code = code;
         this.name = name;
@@ -27,9 +30,6 @@ public class Pet {
         this.name = name;
         this.age = age;
         this.ownerId = ownerId;
-    }
-
-    public Pet() {
     }
 
     public Integer getCode() {

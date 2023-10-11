@@ -32,6 +32,7 @@ public class PetProtectionAssociation {
         return totalDonation;
     }
 
+
     public PetProtectionAssociation() {
         this.hepatitisVaccines = 0;
         this.parvovirusVaccines = 0;
@@ -62,7 +63,7 @@ public class PetProtectionAssociation {
                     pet.setAppliedVaccine(vaccine);
                     rabiaVaccines++;
                 }
-                default -> System.out.println("Código de vacuna inválido");
+                default -> System.out.println("Vacuna inválido");
 
             }
             totalDonation += vaccine.getPrice();
@@ -123,9 +124,8 @@ public class PetProtectionAssociation {
 
         System.out.println("Total de vacunas \"Parvovirus\" aplicadas: " + PPA.getParvovirusVaccines());
 
-        Integer percentageHepatitis = (PPA.getHepatitisVaccines() * 100) / hepatitis.getQuantity();
-        Double percentage = percentageHepatitis * 1.0;
-        System.out.println("Porcentaje de vacunas \"Hepatitis\" aplicadas: " + percentage + "%");
+        Double percentageHepatitis = (double)(PPA.getHepatitisVaccines() * 100) / hepatitis.getQuantity();
+        System.out.println("Porcentaje de vacunas \"Hepatitis\" aplicadas: " + percentageHepatitis + "%");
 
         System.out.println("Donación total: $" + PPA.getTotalDonation());
     }

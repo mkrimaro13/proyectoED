@@ -12,14 +12,14 @@ public class Vaccine {
     private Double price;
     private Integer quantity;
 
+    public Vaccine() {
+    }
+
     public Vaccine(Integer code, String name, Double price, Integer quantity) {
         this.code = code;
         this.name = name;
         this.price = price;
         this.quantity = quantity;
-    }
-
-    public Vaccine() {
     }
 
     public Integer getCode() {
@@ -57,9 +57,9 @@ public class Vaccine {
     @Override
     public String toString() {
         return "Código de la vacuna: " + code + "\n" +
-        "Nombre de la vacuna: " + name + "\n" +
-        "Precio unitario de la vacuna: " + price + "\n" +
-        "Cantidad de vacunas disponibles: " + quantity + "\n" ;
+                "Nombre de la vacuna: " + name + "\n" +
+                "Precio unitario de la vacuna: " + price + "\n" +
+                "Cantidad de vacunas disponibles: " + quantity + "\n";
     }
 
     // Para la segunda entrega, registro de vacunas

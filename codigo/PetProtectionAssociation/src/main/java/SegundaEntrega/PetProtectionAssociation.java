@@ -71,7 +71,21 @@ public class PetProtectionAssociation {
                             highsetPriceVaccine = actualVaccine;
                         }
                     }
-                    JOptionPane.showMessageDialog(null,"La vacuna de mayor precio por unidad es: \n" + highsetPriceVaccine);
+                    JOptionPane.showMessageDialog(null,
+                            "La vacuna de mayor precio por unidad es: \n" + highsetPriceVaccine);
+                    break;
+                case 3:
+                    Pet pet;
+                    Integer addingAges = 0, n = 0;
+                    Double averageAge;
+                    while (tail.isEmpty() == false) {
+                        pet = (Pet) tail.Pop();
+                        addingAges += pet.getAge();
+                        n++;
+                    }
+                    averageAge = (double) (addingAges / n);
+                    JOptionPane.showMessageDialog(null,
+                            "La promedio de las mascotas es: \n" + averageAge);
             }
         } while (mainOp < 3);
 
@@ -81,7 +95,8 @@ public class PetProtectionAssociation {
         return "MENU PRINCIPAL\n"
                 + "1. Ingreso de información\n"
                 + "2. Vacuna de mayor precio\n"
-                + "3. Salir ";
+                + "3. Promedio de edad de las mascotas\n"
+                + "4. Salir ";
     }
 
     public String StructuresMenu() {
