@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import PrimeraEntrega.Pet;
 import PrimeraEntrega.Vaccine;
 import TerceraEntrega.DoubleList;
+import TerceraEntrega.ListsManagement;
 
 public class PetProtectionAssociation {
     public static void main(String[] args) {
@@ -15,7 +16,9 @@ public class PetProtectionAssociation {
         Tail auxTail = new Tail(10);
         TailManagement tailManager = new TailManagement();
         DoubleList doubleList = new DoubleList();
-        int mainOp, stMenOp, stackMenOp, tailMenOp, listMenOp;
+        ListsManagement listsManager = new ListsManagement();
+        int mainOp, stMenOp, stackMenOp, tailMenOp, listMenOp, listMenOp2, code1, code2;
+        Pet pet = new Pet();
         PetProtectionAssociation PPA = new PetProtectionAssociation();
         do {
             mainOp = Validations.readInteger(PPA.MainMenu());
@@ -51,6 +54,149 @@ public class PetProtectionAssociation {
                                             tail = tailManager.enterData(tail);
                                             break;
                                         case 2:
+                                            do {
+
+                                                listMenOp = Validations.readInteger(PPA.listMenu());
+                                                switch (listMenOp) {
+                                                    case 1:
+                                                        doubleList = new DoubleList();
+                                                        listMenOp2 = Validations.readInteger("Ingresar datos por: \n"
+                                                                + "1. Ingresar datos por el inicio.\n"
+                                                                + "2. Ingresar datos por el final. \n");
+                                                        doubleList = listsManager.InsertData(doubleList, listMenOp2);
+                                                        break;
+                                                    case 2:
+                                                        if (doubleList.isEmpty() == true) {
+                                                            JOptionPane.showMessageDialog(null, "No hay información");
+                                                        } else {
+                                                            JOptionPane.showMessageDialog(null,
+                                                                    "La información registrada es: \n"
+                                                                            + doubleList.PrintFromHead());
+                                                        }
+                                                        break;
+                                                    case 3:
+                                                        if (doubleList.isEmpty() == true) {
+                                                            JOptionPane.showMessageDialog(null, "No hay información");
+                                                        } else {
+                                                            JOptionPane.showMessageDialog(null,
+                                                                    "La información registrada es: \n"
+                                                                            + doubleList.PrintFromFinal());
+                                                        }
+                                                        break;
+                                                    case 4:
+                                                        if (doubleList.isEmpty() == true) {
+                                                            JOptionPane.showMessageDialog(null, "No hay información");
+                                                        } else {
+                                                            code1 = Validations
+                                                                    .readInteger("Código de la mascota a buscar");
+                                                            JOptionPane.showMessageDialog(null,
+                                                                    "La información de la mascota es: \n"
+                                                                            + doubleList.Search(code1));
+                                                        }
+                                                        break;
+                                                    case 5:
+                                                        if (doubleList.isEmpty()) {
+                                                            JOptionPane.showMessageDialog(null,
+                                                                    "Lista vacia no se puede insertar debe crear");
+                                                        } else {
+                                                            code1 = Validations.readInteger(
+                                                                    "Código de la mascota que se va a ingresa");
+                                                            pet = pet.petRegistry(code1);
+                                                            doubleList.InsertAsHead(pet);
+                                                            JOptionPane.showMessageDialog(null,
+                                                                    "Se ha registrado a la mascota con código " + code1
+                                                                            + " al principio de la lista");
+                                                        }
+                                                        break;
+                                                    case 6:
+                                                        if (doubleList.isEmpty()) {
+                                                            JOptionPane.showMessageDialog(null,
+                                                                    "Lista vacia no se puede insertar debe crear");
+                                                        } else {
+                                                            code1 = Validations.readInteger(
+                                                                    "Código de la mascota que se va a ingresa");
+                                                            pet = pet.petRegistry(code1);
+                                                            doubleList.InsertAsFinal(pet);
+                                                            JOptionPane.showMessageDialog(null,
+                                                                    "Se ha registrado a la mascota con código " + code1
+                                                                            + " al final de la lista");
+                                                        }
+                                                        break;
+                                                    case 7:
+                                                        if (doubleList.isEmpty()) {
+                                                            JOptionPane.showMessageDialog(null,
+                                                                    "Lista vacia no se puede insertar debe crear");
+                                                        } else {
+                                                            code1 = Validations.readInteger(
+                                                                    "Indica el código de la mascota que se usará como referencia");
+                                                            if (doubleList.Search(code1) == true) {
+                                                                code2 = Validations.readInteger(
+                                                                        "Ingresa el código de la mascota que registrará: ");
+                                                                pet = pet.petRegistry(code2);
+                                                                doubleList.InsertAfter(code2, pet);
+                                                            } else {
+                                                                JOptionPane.showMessageDialog(null,
+                                                                        "La mascota de referencia no existe");
+                                                            }
+                                                        }
+                                                        break;
+                                                    case 8:
+                                                        if (doubleList.isEmpty()) {
+                                                            JOptionPane.showMessageDialog(null,
+                                                                    "Lista vacia no se puede insertar debe crear");
+                                                        } else {
+                                                            code1 = Validations.readInteger(
+                                                                    "Indica el código de la mascota que se usará como referencia");
+                                                            if (doubleList.Search(code1) == true) {
+                                                                code2 = Validations.readInteger(
+                                                                        "Ingresa el código de la mascota que registrará: ");
+                                                                pet = pet.petRegistry(code2);
+                                                                doubleList.InsertBefore(code2, pet);
+                                                            } else {
+                                                                JOptionPane.showMessageDialog(null,
+                                                                        "La mascota de referencia no existe");
+                                                            }
+                                                        }
+                                                        break;
+                                                    case 9:
+                                                        if (doubleList.isEmpty()) {
+                                                            JOptionPane.showMessageDialog(null,
+                                                                    "Lista vacia no se puede insertar debe crear");
+                                                        } else {
+                                                            JOptionPane.showMessageDialog(null,
+                                                                    "Se eliminará el registro de la mascota: "
+                                                                            + doubleList.ReleaseHead());
+                                                        }
+                                                        break;
+                                                    case 10:
+                                                        if (doubleList.isEmpty()) {
+                                                            JOptionPane.showMessageDialog(null,
+                                                                    "Lista vacia no se puede insertar debe crear");
+                                                        } else {
+                                                            JOptionPane.showMessageDialog(null,
+                                                                    "Se eliminará el registro de la mascota: "
+                                                                            + doubleList.ReleaseFinal());
+                                                        }
+                                                        break;
+                                                    case 11:
+                                                        if (doubleList.isEmpty()) {
+                                                            JOptionPane.showMessageDialog(null,
+                                                                    "Lista vacia no se puede insertar debe crear");
+                                                        } else {
+                                                            code1 = Validations.readInteger(
+                                                                    "Indica el código de la mascota que se va a eliminar: ");
+                                                            JOptionPane.showMessageDialog(null,
+                                                                    "Se eliminará el registro de la mascota: "
+                                                                            + doubleList.ReleaseHead());
+                                                        }
+                                                        break;
+                                                    case 12:
+                                                        break;
+                                                }
+                                            } while (listMenOp < 13);
+                                            break;
+                                        case 3:
+
                                             if (tail.isEmpty() == false) {
                                                 JOptionPane.showMessageDialog(null,
                                                         "La información registrada es: \n"
@@ -59,13 +205,7 @@ public class PetProtectionAssociation {
                                                 JOptionPane.showMessageDialog(null, "No hay información registrada.");
                                             }
                                             break;
-                                        case 3:
-                                            do{
-                                                listMenOp = Validations.readInteger(null)
-                                                doubleList = new DoubleList();
 
-                                            }while (listMenOp < 3)
-                                            break;
                                     }
                                 } while (tailMenOp < 4);
                                 break;
@@ -84,7 +224,6 @@ public class PetProtectionAssociation {
                             "La vacuna de mayor precio por unidad es: \n" + highsetPriceVaccine);
                     break;
                 case 3:
-                    Pet pet;
                     Integer addingAges = 0, n = 0;
                     Double averageAge;
                     while (tail.isEmpty() == false) {
@@ -131,13 +270,19 @@ public class PetProtectionAssociation {
     }
 
     public String listMenu() {
-        return "SUBMENU DE MASCOTAS CON LISTAS DOBLES\n"
-                + "1. Ingresar una mascota al inicio de la lista\n"
-                + "2. Ingresar una mascota al final de la lista \n"
-                + "3. Buscar una mascota por su código\n"
-                + "4. Imprimir desde el inicio de la lista\n"
-                + "5. Imprimir desde el final de la lista\n"
-                + "2. Imprimir datos de forma ascendente\n";
+        return "MENU DE MASCOTAS CON LISTAS DOBLES\n"
+                + "1. Crear la lista\n"
+                + "2. Imprimir desde el inicio de la lista\n"
+                + "3. Imprimir desde el final de la lista\n"
+                + "4. Imprimir la información de una mascota por su código\n"
+                + "5. Registrar una mascota al inicio de la lista\n"
+                + "6. Registrar una mascota al final de la lista\n"
+                + "7. Registrar una mascota después de una mascota de referencia\n"
+                + "8. Registrar una mascota antes de una mascota de referencia\n"
+                + "9. Eliminar el registro de una mascota al inicio de la lista\n"
+                + "10. Eliminar el registro de una mascota al final de la lista\n"
+                + "11. Eliminar el registro de una mascota que sea indicado.\n"
+                + "13. Volver a l menu anterior\n";
     }
 
 }

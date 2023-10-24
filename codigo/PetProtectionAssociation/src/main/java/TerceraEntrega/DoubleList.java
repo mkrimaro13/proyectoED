@@ -204,6 +204,7 @@ public class DoubleList {
         if (p == null)
             return false;
         else
+            p.toString();
             return true;
         // fin si
     }// fin buscar
