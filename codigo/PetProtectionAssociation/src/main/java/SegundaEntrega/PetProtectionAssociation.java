@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 
 import PrimeraEntrega.Pet;
 import PrimeraEntrega.Vaccine;
+import TerceraEntrega.DoubleList;
 
 public class PetProtectionAssociation {
     public static void main(String[] args) {
@@ -13,7 +14,8 @@ public class PetProtectionAssociation {
         Tail tail = new Tail(10);
         Tail auxTail = new Tail(10);
         TailManagement tailManager = new TailManagement();
-        int mainOp, stMenOp, stackMenOp, tailMenOp;
+        DoubleList doubleList = new DoubleList();
+        int mainOp, stMenOp, stackMenOp, tailMenOp, listMenOp;
         PetProtectionAssociation PPA = new PetProtectionAssociation();
         do {
             mainOp = Validations.readInteger(PPA.MainMenu());
@@ -57,8 +59,15 @@ public class PetProtectionAssociation {
                                                 JOptionPane.showMessageDialog(null, "No hay información registrada.");
                                             }
                                             break;
+                                        case 3:
+                                            do{
+                                                listMenOp = Validations.readInteger(null)
+                                                doubleList = new DoubleList();
+
+                                            }while (listMenOp < 3)
+                                            break;
                                     }
-                                } while (tailMenOp < 3);
+                                } while (tailMenOp < 4);
                                 break;
                         }
                     } while (stMenOp < 3);
@@ -87,7 +96,7 @@ public class PetProtectionAssociation {
                     JOptionPane.showMessageDialog(null,
                             "La promedio de las mascotas es: \n" + averageAge);
             }
-        } while (mainOp < 3);
+        } while (mainOp < 4);
 
     }
 
@@ -116,12 +125,19 @@ public class PetProtectionAssociation {
     public String TailMenu() {
         return "MENU DE MASCOTAS\n"
                 + "1. Registrar información sobre las mascotas\n"
-                + "2. Imprimir la información de las mascotas registradas\n"
-                + "3. Volver al menu anterior ";
+                + "2. Registrar información de las mascotas usando la lista doble \n"
+                + "3. Imprimir la información de las mascotas registradas\n"
+                + "4. Volver al menu anterior ";
     }
 
-    // public void highestPriceVaccine() {
-    // Vaccine vaccine =
-    // }
+    public String listMenu() {
+        return "SUBMENU DE MASCOTAS CON LISTAS DOBLES\n"
+                + "1. Ingresar una mascota al inicio de la lista\n"
+                + "2. Ingresar una mascota al final de la lista \n"
+                + "3. Buscar una mascota por su código\n"
+                + "4. Imprimir desde el inicio de la lista\n"
+                + "5. Imprimir desde el final de la lista\n"
+                + "2. Imprimir datos de forma ascendente\n";
+    }
 
 }

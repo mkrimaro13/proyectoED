@@ -102,4 +102,16 @@ public class Pet {
         pet = new Pet(code, name, age, ownerId);
         return pet;
     }
+
+    // Para la tercer entrega, registro de mascota por código
+        public Pet petRegistry(int code) {
+        String name;
+        Integer age, ownerId;
+        Pet pet;
+        name = Validations.readString("Ingresa el nombre de la mascota: ");
+        age = Validations.readInteger("Ingresa la edad: ");
+        ownerId = Validations.readInteger("Ingresa el número de documento del dueño de la mascota: ");
+        pet = new Pet(code, name, age, ownerId);
+        return pet;
+    }
 }
