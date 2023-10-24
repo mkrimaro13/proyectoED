@@ -186,7 +186,8 @@ public class DoubleList {
     }// fin liberar ultimo
 
     /*
-     * busca por código y si lo encuentra retorna verdadero y deja ubicado en el dato
+     * busca por código y si lo encuentra retorna verdadero y deja ubicado en el
+     * dato
      * al nodo p ....y si no lo encuentra retorna falso y p no apunta a nada
      */
     public boolean Search(int id) {
@@ -204,8 +205,10 @@ public class DoubleList {
         if (p == null)
             return false;
         else
-            p.toString();
-            return true;
+            JOptionPane.showMessageDialog(null,
+                    "La información registrada es: \n"
+                            + p.toString());
+        return true;
         // fin si
     }// fin buscar
 

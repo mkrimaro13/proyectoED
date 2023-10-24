@@ -16,6 +16,7 @@ public class PetProtectionAssociation {
         Tail auxTail = new Tail(10);
         TailManagement tailManager = new TailManagement();
         DoubleList doubleList = new DoubleList();
+        DoubleList doubleList2 = new DoubleList();
         ListsManagement listsManager = new ListsManagement();
         int mainOp, stMenOp, stackMenOp, tailMenOp, listMenOp, listMenOp2, code1, code2;
         Pet pet = new Pet();
@@ -35,7 +36,7 @@ public class PetProtectionAssociation {
                                             stack = stackManager.enterData(stack);
                                             break;
                                         case 2:
-                                            if (stack.isEmpty() == false) {
+                                            if (stack.isEmpty()) {
                                                 JOptionPane.showMessageDialog(null,
                                                         "La información registrada es: \n"
                                                                 + stackManager.print(stack, auxStack));
@@ -55,18 +56,16 @@ public class PetProtectionAssociation {
                                             break;
                                         case 2:
                                             do {
-
                                                 listMenOp = Validations.readInteger(PPA.listMenu());
                                                 switch (listMenOp) {
                                                     case 1:
-                                                        doubleList = new DoubleList();
                                                         listMenOp2 = Validations.readInteger("Ingresar datos por: \n"
                                                                 + "1. Ingresar datos por el inicio.\n"
                                                                 + "2. Ingresar datos por el final. \n");
                                                         doubleList = listsManager.InsertData(doubleList, listMenOp2);
                                                         break;
                                                     case 2:
-                                                        if (doubleList.isEmpty() == true) {
+                                                        if (doubleList.isEmpty()) {
                                                             JOptionPane.showMessageDialog(null, "No hay información");
                                                         } else {
                                                             JOptionPane.showMessageDialog(null,
@@ -75,7 +74,7 @@ public class PetProtectionAssociation {
                                                         }
                                                         break;
                                                     case 3:
-                                                        if (doubleList.isEmpty() == true) {
+                                                        if (doubleList.isEmpty()) {
                                                             JOptionPane.showMessageDialog(null, "No hay información");
                                                         } else {
                                                             JOptionPane.showMessageDialog(null,
@@ -84,7 +83,7 @@ public class PetProtectionAssociation {
                                                         }
                                                         break;
                                                     case 4:
-                                                        if (doubleList.isEmpty() == true) {
+                                                        if (doubleList.isEmpty()) {
                                                             JOptionPane.showMessageDialog(null, "No hay información");
                                                         } else {
                                                             code1 = Validations
@@ -191,13 +190,23 @@ public class PetProtectionAssociation {
                                                         }
                                                         break;
                                                     case 12:
+                                                        doubleList2 = doubleList;
+                                                        Double addingAges = 0.0, n = 0.0, averageAge;
+                                                        while (doubleList2.isEmpty() == false) {
+                                                            pet = (Pet) doubleList2.ReleaseFinal();
+                                                            addingAges += pet.getAge();
+                                                            n++;
+                                                        }
+                                                        averageAge = (double) (addingAges / n);
+                                                        JOptionPane.showMessageDialog(null,
+                                                                "La promedio de las mascotas es: \n" + averageAge);
                                                         break;
                                                 }
                                             } while (listMenOp < 13);
                                             break;
                                         case 3:
 
-                                            if (tail.isEmpty() == false) {
+                                            if (tail.isEmpty()) {
                                                 JOptionPane.showMessageDialog(null,
                                                         "La información registrada es: \n"
                                                                 + tailManager.print(tail, auxTail));
@@ -282,6 +291,7 @@ public class PetProtectionAssociation {
                 + "9. Eliminar el registro de una mascota al inicio de la lista\n"
                 + "10. Eliminar el registro de una mascota al final de la lista\n"
                 + "11. Eliminar el registro de una mascota que sea indicado.\n"
+                + "12. Calcular el promedio de edad de las mascotas.\n"
                 + "13. Volver a l menu anterior\n";
     }
 
