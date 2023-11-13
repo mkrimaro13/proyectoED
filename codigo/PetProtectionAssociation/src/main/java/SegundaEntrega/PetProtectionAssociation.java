@@ -2,6 +2,7 @@ package SegundaEntrega;
 
 import javax.swing.JOptionPane;
 
+import CuartaEntrega.BinaryTree;
 import PrimeraEntrega.Pet;
 import PrimeraEntrega.Vaccine;
 import TerceraEntrega.DoubleList;
@@ -18,8 +19,10 @@ public class PetProtectionAssociation {
         DoubleList doubleList = new DoubleList();
         DoubleList doubleList2 = new DoubleList();
         ListsManagement listsManager = new ListsManagement();
-        int mainOp, stMenOp, stackMenOp, tailMenOp, listMenOp, listMenOp2, code1, code2;
+        int mainOp, stMenOp, stackMenOp, tailMenOp, listMenOp, listMenOp2, code1, code2, treeMenOp;
         Pet pet = new Pet();
+        Vaccine vaccine = new Vaccine();
+        BinaryTree tree = new BinaryTree();
         PetProtectionAssociation PPA = new PetProtectionAssociation();
         do {
             mainOp = Validations.readInteger(PPA.MainMenu());
@@ -48,6 +51,31 @@ public class PetProtectionAssociation {
                                 } while (stackMenOp < 3);
                                 break;
                             case 2:
+                                do {
+                                    treeMenOp = Validations.readInteger(PPA.treeMenu());
+                                    switch (treeMenOp) {
+                                        case 1:
+                                            tree = new BinaryTree();
+                                            int vaccioneCode = Validations.readInteger(
+                                                    "Ingresa el código de la vacuna que será la raíz del árbol");
+                                            vaccine = vaccine.vaccineRegistry(vaccioneCode);
+                                            tree.CreateRoot(vaccine);
+                                            tree.Create(tree.getRoot());
+                                            break;
+                                        case 2:
+                                            // Valida que el árbol no esté vacío para poder imprimirlo.
+                                            if (tree.isEmpty()) {
+                                                JOptionPane.showMessageDialog(null, "Árbol Vacío");
+                                            } else {
+                                                tree.Initialize();
+                                                JOptionPane.showMessageDialog(null, "Los datos almacenados son: \n"
+                                                        + tree.PostOrder(tree.getRoot()));
+                                            }
+                                            break;
+                                    }
+                                } while (treeMenOp < 3);
+                                break;
+                            case 3:
                                 do {
                                     tailMenOp = Validations.readInteger(PPA.TailMenu());
                                     switch (tailMenOp) {
@@ -219,7 +247,7 @@ public class PetProtectionAssociation {
                                 } while (tailMenOp < 4);
                                 break;
                         }
-                    } while (stMenOp < 3);
+                    } while (stMenOp < 4);
                     break;
                 case 2:
                     Vaccine highsetPriceVaccine = (Vaccine) stack.Pop();
@@ -258,9 +286,10 @@ public class PetProtectionAssociation {
 
     public String StructuresMenu() {
         return "MENU INFORMATIVO\n"
-                + "1. Consultar información de las vacunas\n"
-                + "2. Consultar información de las mascotas\n"
-                + "3. Volver al menu principal ";
+                + "1. Consultar información de las vacunas con pilas\n"
+                + "2. Consultar información de las vacunas con árbol binario\n"
+                + "3. Consultar información de las mascotas\n"
+                + "4. Volver al menu principal ";
     }
 
     public String StackMenu() {
@@ -293,6 +322,13 @@ public class PetProtectionAssociation {
                 + "11. Eliminar el registro de una mascota que sea indicado.\n"
                 + "12. Calcular el promedio de edad de las mascotas.\n"
                 + "13. Volver a l menu anterior\n";
+    }
+
+    public String treeMenu() {
+        return "MENÚ DE VACUNAS CON ÁRBOL BINARIO\n"
+                + "1. Crear árbol\n"
+                + "2. Mostrar PostOrden\n"
+                + "3. Volver al menu anterior\n";
     }
 
 }

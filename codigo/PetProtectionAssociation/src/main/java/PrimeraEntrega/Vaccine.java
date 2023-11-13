@@ -76,4 +76,17 @@ public class Vaccine {
         return vaccine;
     }
 
+    // Para la cuarta entrega, registro de vacunas ingresando el código.
+    public Vaccine vaccineRegistry(int code) {
+        String name;
+        int quantity;
+        Double price;
+        Vaccine vaccine;
+        name = Validations.readString("Ingresa el nombre de la vacuna: ");
+        price = Validations.readReal("Ingresa el precio por unidad de la vacuna: ");
+        quantity = Validations.readInteger("Ingresa la cantidad de vacunas disponibles: ");
+        vaccine = new Vaccine(code, name, price, quantity);
+        return vaccine;
+    }
+
 }
