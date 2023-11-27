@@ -1,12 +1,14 @@
 package PrimeraEntrega;
 
+import java.io.Serializable;
+
 import SegundaEntrega.Validations;
 
 /**
  *
  * @author marco
  */
-public class Pet {
+public class Pet implements Serializable {
 
     private Integer code;
     private String name;
@@ -104,7 +106,7 @@ public class Pet {
     }
 
     // Para la tercer entrega, registro de mascota por código
-        public Pet petRegistry(int code) {
+    public Pet petRegistry(int code) {
         String name;
         Integer age, ownerId;
         Pet pet;
@@ -112,6 +114,43 @@ public class Pet {
         age = Validations.readInteger("Ingresa la edad: ");
         ownerId = Validations.readInteger("Ingresa el número de documento del dueño de la mascota: ");
         pet = new Pet(code, name, age, ownerId);
+        return pet;
+    }
+
+    // Para la quinta entrega, editar el registro de una mascota
+    public Object Edit(Object data) {
+        String name;
+        Integer code, age, ownerId,op;
+        Pet pet;
+        // pasamos a las variables auxiliares locales los datos del empleado
+        code = ((Pet) data).getCode();
+        name = ((Pet) data).getName();
+        age = ((Pet) data).getAge();
+        ownerId = ((Pet) data).getOwnerId();
+
+        do {// mientras para el menu
+            op = Validations.readInteger("Menu Cambios\n"
+                    + "\n1. Nombre " + name
+                    + "\n2. Edad " + age
+                    + "\n3. Identificación del dueño " + ownerId
+                    + "\n4. Terminar o salir");
+            switch (op) {
+                case 1:
+                    name = Validations.readString("Nombre: ");
+                    break;
+                case 2:
+                    age = Validations.readInteger("Edad: ");
+                    break;
+                case 3:
+                    ownerId = Validations.readInteger("Identificación del dueño: ");
+                    break;
+
+
+            }// fin caso
+
+        } while (op < 4);// fin mientras del menu
+        // instanciamos un objeto para los nuevos datos
+        pet = new Pet(code,name,age,ownerId);
         return pet;
     }
 }

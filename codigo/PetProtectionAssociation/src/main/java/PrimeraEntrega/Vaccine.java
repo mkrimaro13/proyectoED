@@ -1,12 +1,14 @@
 package PrimeraEntrega;
 
+import java.io.Serializable;
+
 import SegundaEntrega.Validations;
 
 /**
  *
  * @author marco
  */
-public class Vaccine {
+public class Vaccine implements Serializable{
     private Integer code;
     private String name;
     private Double price;
@@ -89,4 +91,40 @@ public class Vaccine {
         return vaccine;
     }
 
+    public Object Edit(Object data) {
+        String name;
+        int code, quantity,op;
+        Double price;
+        Vaccine vaccine;
+        // pasamos a las variables auxiliares locales los datos del empleado
+        code = ((Vaccine) data).getCode();
+        name = ((Vaccine) data).getName();
+        price = ((Vaccine) data).getPrice();
+        quantity = ((Vaccine) data).getQuantity();
+
+        do {// mientras para el menu
+            op = Validations.readInteger("Menu Cambios\n"
+                    + "\n1. Nombre " + name
+                    + "\n2. Precio " + price
+                    + "\n3. Cantidad " + quantity
+                    + "\n4. Terminar o salir");
+            switch (op) {
+                case 1:
+                    name = Validations.readString("Nombre: ");
+                    break;
+                case 2:
+                    price = Validations.readReal("Precio: ");
+                    break;
+                case 3:
+                    quantity = Validations.readInteger("Cantidad: ");
+                    break;
+
+
+            }// fin caso
+
+        } while (op < 4);// fin mientras del menu
+        // instanciamos un objeto para los nuevos datos
+        vaccine = new Vaccine(code, name, price, quantity);
+        return vaccine;
+    }
 }

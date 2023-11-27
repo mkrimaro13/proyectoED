@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 
 import PrimeraEntrega.Vaccine;
 import SegundaEntrega.Validations;
+import TerceraEntrega.DoubleList;
 import TerceraEntrega.DoubleNode;
 
 // La ejecución del árbol se incluye en la clase PetProtectionAssociation.java de la segunda entrega.
@@ -26,6 +27,7 @@ public class BinaryTree {
     // Objetos auxiliares.
     Object info;
     DoubleNode q, aux;
+    DoubleList l = new DoubleList();
     String text = "";
     int id, count = 0;
     Vaccine vaccine = new Vaccine();
@@ -66,6 +68,17 @@ public class BinaryTree {
             InsertNodes(q);
             q.setNext(aux);
         }
+    }
+
+    public DoubleList leafNodes(DoubleNode q) {
+        if (q != null) {
+            leafNodes(q.getNext());
+            leafNodes(q.getPrevious());
+            if (q.getNext() == null && q.getPrevious() == null) {
+                l.CreateNodeByEnd(q.getData());
+            }
+        }
+        return l;
     }
 
     // Inicializa la variable que concatena los nodos en texto y el contador.

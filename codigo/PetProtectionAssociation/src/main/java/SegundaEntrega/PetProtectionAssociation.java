@@ -1,14 +1,18 @@
 package SegundaEntrega;
 
+import java.io.Serializable;
+
 import javax.swing.JOptionPane;
 
 import CuartaEntrega.BinaryTree;
 import PrimeraEntrega.Pet;
 import PrimeraEntrega.Vaccine;
+import QuintaEntrega.CRUD;
+import QuintaEntrega.Fiile;
 import TerceraEntrega.DoubleList;
 import TerceraEntrega.ListsManagement;
 
-public class PetProtectionAssociation {
+public class PetProtectionAssociation implements Serializable {
     public static void main(String[] args) {
         Stack stack = new Stack(4);
         Stack auxStack = new Stack(4);
@@ -19,11 +23,14 @@ public class PetProtectionAssociation {
         DoubleList doubleList = new DoubleList();
         DoubleList doubleList2 = new DoubleList();
         ListsManagement listsManager = new ListsManagement();
-        int mainOp, stMenOp, stackMenOp, tailMenOp, listMenOp, listMenOp2, code1, code2, treeMenOp;
+        int mainOp, stMenOp, stackMenOp, tailMenOp, listMenOp, listMenOp2, code1, code2, treeMenOp, fileMenOp;
         Pet pet = new Pet();
         Vaccine vaccine = new Vaccine();
         BinaryTree tree = new BinaryTree();
         PetProtectionAssociation PPA = new PetProtectionAssociation();
+        Fiile file = new Fiile();
+        CRUD crud = new CRUD();
+        file = crud.Creation();
         do {
             mainOp = Validations.readInteger(PPA.MainMenu());
             switch (mainOp) {
@@ -72,8 +79,46 @@ public class PetProtectionAssociation {
                                                         + tree.PostOrder(tree.getRoot()));
                                             }
                                             break;
+                                        case 3:
+                                            doubleList2 = tree.leafNodes(tree.getRoot());
+                                            if (tree.isEmpty()) {
+                                                JOptionPane.showMessageDialog(null, "No hay nodos terminales");
+                                            } else {
+                                                tree.Initialize();
+                                                JOptionPane.showMessageDialog(null, "Los nodos terminales son: \n"
+                                                        + doubleList2.PrintFromFinal());
+                                            }
+                                            break;
+                                        case 4:
+                                            if (tree.isEmpty()) {
+                                                JOptionPane.showMessageDialog(null,
+                                                        "Árbol vacío ingresa datos primero.");
+                                            } else {
+                                                do {
+                                                    fileMenOp = Validations.readInteger(PPA.FileMenu());
+                                                    String text;
+                                                    switch (fileMenOp) {
+                                                        case 1:
+                                                            crud.AddingLeafs(file, doubleList2);
+                                                            text = file.ShowAll();
+                                                            if (!text.equals("")) {
+                                                                JOptionPane.showMessageDialog(null, "" + text);
+                                                            }
+                                                            break;
+                                                        case 2:
+                                                            do {
+                                                                doubleList.ReleaseFinal();
+                                                            } while (!doubleList.isEmpty());
+                                                            file.CopyListFile(doubleList);
+                                                            JOptionPane.showMessageDialog(null, "Se copió la información del archivo" + doubleList.PrintFromFinal());
+                                                            break;
+                                                    }
+                                                    crud.Write(file);
+                                                } while (fileMenOp < 3);
+                                            }
+                                            break;
                                     }
-                                } while (treeMenOp < 3);
+                                } while (treeMenOp < 5);
                                 break;
                             case 3:
                                 do {
@@ -328,7 +373,16 @@ public class PetProtectionAssociation {
         return "MENÚ DE VACUNAS CON ÁRBOL BINARIO\n"
                 + "1. Crear árbol\n"
                 + "2. Mostrar PostOrden\n"
-                + "3. Volver al menu anterior\n";
+                + "3. Mostrar los nodos terminales\n"
+                + "4. Gestión de archivos.\n"
+                + "5. Volver al menu anterior";
+    }
+
+    public String FileMenu() {
+        return "MENÚ DE GESTIÓN DE ARCHIVO\n"
+                + "1. Grabar los nodos terminales del árbol binario\n"
+                + "2. Copiar los datos del archivo a la lista por el final, y despilar los datos existentes.\n"
+                + "3. Volver al menu anterior";
     }
 
 }
